@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <InvariantGlobalization>true</InvariantGlobalization>
+        <RootNamespace>Login_back</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Application\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Infrastructure\Repositories\OwnerRepository.cs" />
+      <Compile Remove="Infrastructure\Repositories\RequestRepository.cs" />
+      <Compile Remove="Infrastructure\Repositories\TenantRepository.cs" />
+      <Compile Remove="Infrastructure\Repositories\VehicleRepository.cs" />
+      <Compile Remove="Presentation\Controllers\OwnerController.cs" />
+      <Compile Remove="Presentation\Controllers\RequestController.cs" />
+      <Compile Remove="Presentation\Controllers\TenantController.cs" />
+      <Compile Remove="Presentation\Controllers\VehicleController.cs" />
+      <Compile Remove="Domain\Dtos\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Domain\Dtos\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Domain\Dtos\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Domain\Dtos\**" />
+    </ItemGroup>
+
+</Project>

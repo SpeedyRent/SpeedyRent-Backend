@@ -1,6 +1,7 @@
 using Login_back.Domain.Model;
 using Microsoft.AspNetCore.Mvc;
 using Login_back.Infrastructure.Repositories;
+using System.Security.Claims;
 
 namespace Login_back.Presentation.Controllers
 {
@@ -15,6 +16,60 @@ namespace Login_back.Presentation.Controllers
             _userRepository = userRepository;
         }
 
+      
+        [HttpGet("profile")]
+        public async Task<IActionResult> GetUserProfile()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userIdClaim == null || !int.TryParse(userIdClaim, out int userId))
+            {
+                return Unauthorized();
+            }
+
+            var user = await _userRepository.GetByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var userProfile = new UserProfileDto
+            {
+                Username = user.Username,
+                Email = user.Email
+               
+            };
+
+            return Ok(userProfile);
+        }
+
+        
+        [HttpPut("profile")]
+        public async Task<IActionResult> UpdateUserProfile([FromBody] UpdateUserProfileDto updatedProfile)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userIdClaim == null || !int.TryParse(userIdClaim, out int userId))
+            {
+                return Unauthorized();
+            }
+
+            var existingUser = await _userRepository.GetByIdAsync(userId);
+            if (existingUser == null)
+            {
+                return NotFound();
+            }
+
+            
+            existingUser.Username = updatedProfile.Username;
+            existingUser.Email = updatedProfile.Email;
+           
+
+            _userRepository.Update(existingUser);
+            await _userRepository.SaveChangesAsync();
+
+            return Ok(new { message = "Perfil actualizado exitosamente" });
+        }
+
+        
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {

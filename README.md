@@ -27,3 +27,29 @@ Para ejecutar este proyecto necesitas:
 - MySQL Entity Framework Core v8.0.5.
 
 ---
+
+## *Cómo Iniciar el Backend*
+1. Configura *IIS Express* como servidor de presentación.
+2. Ejecuta el comando Run en el entorno JetBrains Rider.
+
+---
+
+## *Estructura del Proyecto*
+- *Login y Register:* Manejo de autenticación y autorización.
+- *Homepage Research:* Endpoint para búsquedas de autos publicados.
+- *User Account:* Gestión de datos de los usuarios.
+- *Homepage Community:* Funcionalidades de interacción en la comunidad.
+
+---
+
+## *Deployment*
+El backend está diseñado para ejecutarse en el entorno *Network SGK 8.0* y utiliza el *template WEB API* para su arquitectura.
+
+---
+
+## *Integrantes*
+- *Valera Garcés, Samuel Ignacio:* Unificación de backend.
+- *Belleza Tello, Paolo Eduardo:* Actualización de frontend.
+- *Fernández Alva, María Fernanda:* Actualización de frontend.
+- *Vilca Valverde, Fiorella Angela:* Actualización de frontend.
+- *Becerra Llempen, Fabiola Dayane:* Elaboración de documentos finales.
